@@ -1,0 +1,41 @@
+.col-xs-12
+  .row
+    = search_form_for @query, url: [:admin, :orders] do |f|
+      .col-md-4
+        = f.input :full_name_cont, required: false, label: 'Name contains'
+      .col-md-4
+        = f.input :email_cont, as: :string, required: false, label: 'Email contains'
+      .col-md-4
+        = f.input :phone_number_cont, required: false, label: 'Phone contains'
+      .col-md-4
+        = f.input :company_cont, required: false, label: 'Company name contains'
+      .col-md-4
+        = f.input :address, required: false, label: 'Address contains'
+      / .col-md-4
+        div style="margin-top: 30px"
+          = f.input :shareable_images_eq, as: :boolean, required: false, label: 'Shareable images'
+      .col-md-4
+        button.btn.btn-success.btn-block style="margin-top: 25px"
+          = fa_icon('search')
+          | Search
+
+.col-xs-12
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th Paid
+          th = sort_link(@query, :full_name)
+          th = sort_link(@query, :email)
+          th = sort_link(@query, :created_at)
+          th
+            .pull-right
+              / - if policy(Order).new?
+                = link_to [:new, :admin, :order], class: 'btn btn-xs btn-default'
+                  = fa_icon(:plus)
+                  | New
+      tbody
+        - @collection.each do |record|
+          = render 'row', record: record
+.col-xs-12
+  = paginate @collection

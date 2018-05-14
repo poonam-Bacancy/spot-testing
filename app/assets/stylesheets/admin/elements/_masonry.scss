@@ -1,0 +1,8 @@
+.masonry {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__brick {
+    display: flex;
+  }
+}

@@ -1,0 +1,33 @@
+.row
+  .schedule.schedule--monthly
+    - months = (from..to).group_by { |datetime| [datetime.to_date.strftime('%B'), datetime.year] }
+    - months.each do |month, days|
+      .schedule__unit
+        .schedule__unit__label
+          | #{month.first}, #{month.last}
+        .schedule__unit__days
+          - padding = days.first.wday
+          - padding = padding == 0 ? 7 : padding
+          - padding -= 1
+          - final_padding = padding
+          - padding.times do
+            .schedule__unit__days__day.schedule__unit__days__day--disabled
+          - days.each do |day|
+            .schedule__unit__days__day class="#{'schedule__unit__days__day--today' if Date.today == day}"
+              .schedule__unit__days__day__label
+                div = day.strftime('%A')
+                div = day.strftime('%d')
+              .schedule__unit__days__day__tasks
+                - orders[day].each do |order|
+                  - next unless order.paid?
+                  = render 'admin/schedule/views/task', order: order, day: day
+          - padding = days.last.wday
+          - padding = padding == 0 ? 7 : padding
+          - padding -= 1
+          - padding = 7 - padding - 1
+          - padding.times do
+            .schedule__unit__days__day.schedule__unit__days__day--disabled
+          - final_padding += padding
+          - final_padding = (7 * 5) - days.count - final_padding
+          - final_padding.times do
+            .schedule__unit__days__day.schedule__unit__days__day--disabled

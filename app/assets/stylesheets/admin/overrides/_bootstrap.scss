@@ -1,0 +1,23 @@
+.btn + .btn {
+  margin-left: 4px;
+}
+
+.btn, ul.nav {
+  i.fa {
+    margin-right: 4px;
+  }
+}
+
+.form-inline {
+  .form-group {
+    margin-right: 1em;
+
+    label {
+      margin-right: .3em;
+    }
+  }
+
+  button {
+    margin: 0 1.1em;
+  }
+}

@@ -1,0 +1,11 @@
+en:
+  errors:
+    clipart_id?: "no such clipart exists"
+    color?: "isn't a valid HEX color"
+    color_id?: "no such color exists"
+    email?: "is not a valid email"
+    flavor_id?: "no such flavor exists"
+    font_id?: "no such font exists"
+    building_type_id?: "no such building exists"
+    message_lines_not_empty: "at least one line has to be specified"
+    future_date?: "the date needs to be in the future"

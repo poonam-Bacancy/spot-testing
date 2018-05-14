@@ -1,0 +1,17 @@
+[0;1;32m●[0m redis.service - Redis In-Memory Data Store
+   Loaded: loaded (/etc/systemd/system/redis.service; disabled; vendor preset: enabled)
+   Active: [0;1;32mactive (running)[0m since Mon 2018-05-14 10:27:51 IST; 3s ago
+ Main PID: 6749 (redis-server)
+   CGroup: /system.slice/redis.service
+           └─6749 /usr/local/bin/redis-server 127.0.0.1:6379       
+
+May 14 10:27:51 poonam redis-server[6749]:   `-._    `-._`-.__.-'_.-'    _.-'
+May 14 10:27:51 poonam redis-server[6749]:       `-._    `-.__.-'    _.-'
+May 14 10:27:51 poonam redis-server[6749]:           `-._        _.-'
+May 14 10:27:51 poonam redis-server[6749]:               `-.__.-'
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.644 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.644 # Server initialized
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.644 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.644 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.645 * DB loaded from disk: 0.000 seconds
+May 14 10:27:51 poonam redis-server[6749]: 6749:M 14 May 10:27:51.645 * Ready to accept connections

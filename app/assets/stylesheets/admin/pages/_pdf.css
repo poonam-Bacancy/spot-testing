@@ -1,0 +1,20 @@
+div.alwaysbreak { page-break-before: always; }
+div.nobreak:before { clear:both; }
+div.nobreak { page-break-inside: avoid; }
+
+.page {
+  clear:both;
+  height: 279.4mm; /* US standard letter height */
+  page-break-before: always;
+  page-break-inside: avoid;
+  position: relative;
+  width: 215.9mm; /* US standard letter width */
+}
+
+.page__container {
+  position: relative;
+}
+
+.page__container__spot {
+  position: relative;
+}

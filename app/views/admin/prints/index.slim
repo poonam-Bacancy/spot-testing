@@ -1,0 +1,27 @@
+/ .col-xs-12
+  .row
+    = search_form_for @query, url: [:admin, :prints] do |f|
+      .col-md-8
+        = f.input :created_at_cont, required: false, label: 'Created at'
+      .col-md-4
+        button.btn.btn-success.btn-block style="margin-top: 25px"
+          = fa_icon('search')
+          | Search
+
+.col-xs-12
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th = sort_link(@query, :created_at)
+          th
+            .pull-right
+              - if policy(PrintedCupcake).create?
+                a#trigger_print_generation.btn.btn-xs.btn-default
+                  = fa_icon(:refresh)
+                  | Generate PDFs
+      tbody
+        - @collection.each do |record|
+          = render 'row', record: record
+.col-xs-12
+  = paginate @collection

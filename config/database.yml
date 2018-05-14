@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  timeout: 5000
+  pool: <%= ENV['DATABASE_MAX_CONNECTIONS'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  encoding: <%= ENV['DATABASE_ENCODING'] %>
+
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default

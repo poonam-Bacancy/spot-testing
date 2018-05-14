@@ -1,0 +1,9 @@
+- rows = 8
+- columns = 3
+
+- @media.in_groups_of(rows * columns) do |page_media|
+  .page
+    .page__container
+      - page_media.each do |medium|
+        .page__container__spot
+          h1 Hi!

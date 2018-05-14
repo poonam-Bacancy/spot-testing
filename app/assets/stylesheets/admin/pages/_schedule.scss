@@ -1,0 +1,107 @@
+.schedule {
+  &__unit__label {
+    font-weight: 700;
+    padding: .3em .6em;
+  }
+
+  &__unit__days__day--today {
+    background-color: $schedule_day_today_background_color;
+  }
+
+  &__unit__days__day--disabled {
+    background-color: $schedule_day_disabled_background_color;
+  }
+
+  &__unit__days__day__label {
+    font-weight: 700;
+    padding-bottom: .5em;
+    text-align: center;
+  }
+
+  &__unit__days__day__tasks__task {
+    margin-bottom: .3em;
+    padding: .3em;
+    text-align: center;
+  }
+
+  &__unit__days__day__tasks__task a {
+    color: inherit;
+  }
+
+  &__unit__days__day__tasks__task--shipping {
+    color: $schedule_shipping_task_text_color;
+    background-color: $schedule_shipping_task_background_color
+  }
+
+  &__unit__days__day__tasks__task--baking {
+    color: $schedule_baking_task_text_color;
+    background-color: $schedule_baking_task_background_color
+  }
+
+  &--monthly {
+    .schedule__unit {
+      border: 2px solid $schedule_border_color;
+      display: block;
+      margin-bottom: 5em;
+    }
+
+    .schedule__unit__label {
+      border: 1px solid $schedule_border_color;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .schedule__unit__days {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .schedule__unit__days__day {
+      border: 1px solid $schedule_border_color;
+      display: inline-block;
+      min-height: 13em;
+      padding: .4em;
+    }
+
+    .schedule__unit__days__day__label {
+      border-bottom: 2px solid $schedule_border_color;
+      margin-bottom: .5em;
+    }
+  }
+
+  &--weekly {
+    align-content: stretch;
+    align-items: stretch;
+    display: flex;
+    min-height: 5em;
+    overflow-y: hidden;
+    width: 100%;
+
+    .schedule__unit {
+      border-left: 2px solid $schedule_border_color;
+      display: inline-block;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+
+    .schedule__unit__days {
+      align-content: stretch;
+      align-items: stretch;
+      display: flex;
+      height: 100%;
+    }
+
+    .schedule__unit__days__day {
+      border-right: 1px solid $schedule_border_color;
+      display: inline-block;
+      padding: .3em .6em;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}

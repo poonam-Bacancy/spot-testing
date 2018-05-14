@@ -1,0 +1,31 @@
+= simple_form_for [:admin, record] do |f|
+  .row
+    .col-md-6
+      = f.input :code
+    .col-md-6
+      = f.input :kind, collection: PromotionCode::KINDS.map { |kind| [kind.to_s.humanize, kind] }, include_blank: false
+    .col-md-6
+      = f.input :expires_at, as: :string, input_html: { class: 'datetimepicker' }
+    .col-md-6
+      = f.input :amount
+
+  .row
+    .col-xs-12
+      hr
+
+      button.btn.btn-success.btn-lg
+        = fa_icon('check')
+        | Save
+
+      - redirect_location = [:admin, :promotion_codes]
+
+      = link_to redirect_location, class: 'btn btn-primary btn-lg'
+        = fa_icon('chevron-left')
+        | Back
+
+    .col-xs-12
+      - if f.object.created_at.present?
+        p.help-block Created at: #{f.object.created_at}
+
+      - if f.object.updated_at.present?
+        p.help-block Updated at: #{f.object.updated_at}

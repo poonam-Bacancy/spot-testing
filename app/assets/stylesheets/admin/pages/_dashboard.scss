@@ -1,0 +1,33 @@
+.dashboard {
+  &__widget {
+    align-items: center;
+    background-color: $dashboard_widget_background_color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: $dashboard_widget_margin;
+    padding: $dashboard_widget_padding;
+    width: 100%;
+
+    &__title {
+      align-self: flex-start;
+      text-align: center;
+      font-size: $dashboard_widget_title_font_size;
+      width: 100%;
+    }
+
+    &__information {
+      text-align: center;
+      font-size: $dashboard_widget_information_font_size;
+      width: 100%;
+    }
+
+    &__subtitle {
+      align-self: flex-end;
+      color: $dashboard_widget_subtitle_color;
+      text-align: center;
+      font-size: $dashboard_widget_subtitle_font_size;
+      width: 100%;
+    }
+  }
+}

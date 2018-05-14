@@ -1,0 +1,23 @@
+.col-xs-12
+  h1 Print for #{@record.created_at.strftime('%m/%d/%Y %H:%M')}
+.col-xs-12
+  embed.pdf-embed src="#{@record.pdf&.url}" type='application/pdf'
+.col-xs-12
+  hr
+
+  - redirect_location = [:admin, :prints]
+
+  = link_to redirect_location, class: 'btn btn-primary btn-lg'
+    = fa_icon('chevron-left')
+    | Back
+
+  = link_to @record.pdf&.url, class: 'btn btn-default btn-lg', download: "spots_nyc-print_sheet-#{@record.created_at.strftime('%d-%m-%YT%H-%M')}.pdf"
+    = fa_icon('download')
+    | Download
+
+.col-xs-12
+  - if @record.created_at.present?
+    p.help-block Created at: #{@record.created_at}
+
+  - if @record.updated_at.present?
+    p.help-block Updated at: #{@record.updated_at}

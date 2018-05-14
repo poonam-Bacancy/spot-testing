@@ -1,0 +1,15 @@
+$dashboard_widget_background_color: #f6f6f6;
+$dashboard_widget_margin: 0 0 2em 0;
+$dashboard_widget_padding: .1em 1em;
+$dashboard_widget_title_font_size: 3em;
+$dashboard_widget_information_font_size: 4em;
+$dashboard_widget_subtitle_color: darken($dashboard_widget_background_color, 20);
+$dashboard_widget_subtitle_font_size: 1em;
+
+$schedule_border_color: #c0c0c0;
+$schedule_day_disabled_background_color: #efefef;
+$schedule_day_today_background_color: #cee9ec;
+$schedule_shipping_task_text_color: #665800;
+$schedule_shipping_task_background_color: #FFDC00;
+$schedule_baking_task_text_color: #eb7ab1;
+$schedule_baking_task_background_color: #85144b;

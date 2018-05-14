@@ -1,0 +1,5 @@
+<div class="page">
+  <% cupcakes_partitioned_by_row.each do |cupcakes| %>
+    <%= render 'printed_cupcakes/row', cupcakes: cupcakes %>
+  <% end %>
+</div>

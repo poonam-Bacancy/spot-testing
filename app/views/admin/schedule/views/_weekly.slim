@@ -1,0 +1,17 @@
+.row
+  .schedule.schedule--weekly
+    - weeks = (from..to).group_by { |datetime| datetime.to_date.cweek }
+    - weeks.each do |week, days|
+      .schedule__unit
+        .schedule__unit__label
+          | Week #{week}
+        .schedule__unit__days
+          - days.each do |day|
+            .schedule__unit__days__day class="#{'schedule__unit__days__day--today' if Date.today == day}"
+              .schedule__unit__days__day__label
+                div = day.strftime('%A')
+                div = day.strftime('%m/%d/%Y')
+              .schedule__unit__days__day__tasks
+                - orders[day].each do |order|
+                  - next unless order.paid?
+                  = render 'admin/schedule/views/task', order: order, day: day

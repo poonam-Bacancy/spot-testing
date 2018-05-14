@@ -1,0 +1,57 @@
+html,
+body,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  display: block;
+  height: 287mm;
+  overflow: hidden;
+  page-break-after: always;
+  page-break-inside: avoid;
+  /* padding: 8mm 5mm 10mm 7mm;*/ /* OLD VALUES */
+  padding: 19mm 5mm 3mm 3mm;
+  width: 210mm;
+}
+
+.row {
+  display: block;
+  height: 30mm;
+  margin-bottom: 4mm;
+  overflow: hidden;
+}
+
+.circle {
+  /* background-color: #eee;*/
+  border-radius: 50%;
+  display: inline-block;
+  height: 30mm;
+  margin-right: 3.5mm;
+  overflow: hidden;
+  width: 30mm;
+}
+
+.circle-svg {
+  -webkit-transform: scale(.454, .454) translate(-60%, -60%);
+}
+
+.circle-svg svg {
+  display: block;
+}
+
+.circle-img {
+  display: block;
+  width: 30mm;
+  height: 30mm;
+}
+
+.circle:last-child {
+  margin-right: 0;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}

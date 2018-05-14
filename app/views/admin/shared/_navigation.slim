@@ -1,0 +1,65 @@
+.navbar.navbar-default
+  .container-fluid
+     .navbar-header
+       button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#bs-navbar-collapse-1"
+         span.sr-only Toggle navigation
+         span.icon-bar
+         span.icon-bar
+         span.icon-bar
+       = link_to 'Spots Admin', admin_root_path, class: 'navbar-brand'
+
+     .collapse.navbar-collapse#bs-navbar-collapse-1
+        ul.nav.navbar-nav
+          - if policy(Order).index?
+            li
+              = link_to admin_root_path, class: 'navbar-link'
+                = fa_icon('calendar')
+                | Schedule
+
+          li.dropdown
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              = fa_icon('caret-down')
+              = fa_icon('gift')
+              | Orders
+            ul.dropdown-menu
+              - if policy(Order).index?
+                li = link_to 'Orders', %i[admin orders], class: 'navbar-link'
+              - if policy(PromotionCode).index?
+                li = link_to 'Promotion codes', %i[admin promotion_codes], class: 'navbar-link'
+
+          li.dropdown
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              = fa_icon('caret-down')
+              = fa_icon('birthday-cake')
+              | Cupcakes
+            ul.dropdown-menu
+              - if policy(Clipart).index?
+                li = link_to 'Clipart', %i[admin cliparts], class: 'navbar-link'
+              - if policy(Font).index?
+                li = link_to 'Fonts', %i[admin fonts], class: 'navbar-link'
+              - if policy(Color).index?
+                li = link_to 'Colors', %i[admin colors], class: 'navbar-link'
+              - if policy(CupcakeType).index?
+                li = link_to 'Cupcake types', %i[admin cupcake_types], class: 'navbar-link'
+
+          li.dropdown
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              = fa_icon('caret-down')
+              = fa_icon('building-o')
+              | Shipping
+            ul.dropdown-menu
+              - if policy(BuildingType).index?
+                li = link_to 'Building types', %i[admin building_types], class: 'navbar-link'
+              - if policy(Industry).index?
+                li = link_to 'Industry', %i[admin industries], class: 'navbar-link'
+
+          - if policy(PrintedCupcake).index?
+            li
+              = link_to %i[admin prints], class: 'navbar-link'
+                = fa_icon('print')
+                | Prints
+          / - if policy(User).index?
+            li = link_to 'Users', %i[admin users], class: 'navbar-link'
+
+        ul.nav.navbar-nav.navbar-right
+          li = link_to 'Back to Spots', root_path

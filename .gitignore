@@ -1,0 +1,38 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore environment files
+.env.*
+!.env
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore text editor / IDE files
+*.swp
+*.swo
+.idea/
+tags
+.DS_Store
+db_dump.sql
+
+# Docker specific development files
+/docker
+
+# Uploads
+/public/uploads
+/clipart
+
+# TEST
+/coverage
+/test_pdf.pdf
+
+# Assets
+/public/assets
+/node_modules

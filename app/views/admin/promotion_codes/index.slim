@@ -1,0 +1,29 @@
+.col-xs-12
+  .row
+    = search_form_for @query, url: [:admin, :promotion_codes] do |f|
+      .col-md-10
+        = f.input :code_cont, required: false, label: 'Code contains'
+      .col-md-2
+        button.btn.btn-success.btn-block style="margin-top: 25px"
+          = fa_icon('search')
+          | Search
+
+.col-xs-12
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th = sort_link(@query, :code)
+          th = sort_link(@query, :expires_at)
+          th = sort_link(@query, :kind)
+          th
+            .pull-right
+              - if policy(Clipart).new?
+                = link_to [:new, :admin, :promotion_code], class: 'btn btn-xs btn-default'
+                  = fa_icon(:plus)
+                  | New
+      tbody
+        - @collection.each do |record|
+          = render 'row', record: record
+.col-xs-12
+  = paginate @collection

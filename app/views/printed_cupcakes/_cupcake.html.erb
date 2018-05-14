@@ -1,0 +1,19 @@
+<div class="circle">
+  <% if cupcake.type == :message %>
+
+    <% svg = 'flat_text' %>
+    <% if cupcake.text_size %>
+      <% svg = "single_line_#{cupcake.text_size}_text" %>
+    <% else %>
+      <% svg = cupcake.curved? ? 'curved_text' : 'flat_text' %>
+    <% end %>
+
+    <div class="circle-svg">
+      <%= render "printed_cupcakes/#{svg}", first_line: cupcake.first_line, second_line: cupcake.second_line, third_line: cupcake.third_line, color: cupcake.color, font: cupcake.font&.name %>
+    </div>
+  <% elsif cupcake.type == :clipart %>
+    <%= image_tag pdf_url(cupcake.clipart&.image[:cupcake]&.url), class: 'circle-img' %>
+  <% else %>
+    <%= image_tag pdf_url(cupcake&.image[:cupcake]&.url), class: 'circle-img' %>
+  <% end %>
+</div>

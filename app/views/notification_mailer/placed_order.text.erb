@@ -1,0 +1,30 @@
+HELLO
+=====================
+
+<%= @order.full_name %>
+Thank you very much for your purchase. 
+Please find the receipt below.
+
+Order details
+==============
+
+Order Number
+<%= @order.id %>
+Order Date
+<%= @order.created_at&.strftime('%m/%d/%Y %H:%M') %>
+Total Price
+<%= format_money(@order&.total) %>
+
+Shipping details
+================
+
+Shipping method
+<%= @order.shipping_method&.humanize %>
+Pickup/Delivery
+<% if @order.pickup_time %>
+  <%= @order.pickup_time&.strftime('%m/%d/%Y %H:%M') %>
+<% elsif @order.delivery_starting_at && @order.delivery_ending_at %>
+  <%= @order.delivery_starting_at&.strftime('%m/%d/%Y %H:%M') %> - <%= @order.delivery_ending_at&.strftime('%m/%d/%Y %H:%M') %>
+<% end %>
+
+Spots, <%= Time.now.year %>

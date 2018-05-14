@@ -1,0 +1,27 @@
+.col-xs-12
+  .row
+    = search_form_for @query, url: [:admin, :fonts] do |f|
+      .col-md-10
+        = f.input :name_cont, required: false, label: 'Name contains'
+      .col-md-2
+        button.btn.btn-success.btn-block style="margin-top: 25px"
+          = fa_icon('search')
+          | Search
+
+.col-xs-12
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th = sort_link(@query, :name)
+          th
+            .pull-right
+              - if policy(Clipart).new?
+                = link_to [:new, :admin, :font], class: 'btn btn-xs btn-default'
+                  = fa_icon(:plus)
+                  | New
+      tbody
+        - @collection.each do |record|
+          = render 'row', record: record
+.col-xs-12
+  = paginate @collection

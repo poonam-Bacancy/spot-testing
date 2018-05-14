@@ -1,0 +1,82 @@
+= simple_form_for [:admin, record] do |f|
+
+  .row
+    .col-xs-12
+      h3 Personal data
+      hr
+    .col-md-4
+      = f.input :full_name
+    .col-md-4
+      = f.input :email
+    .col-md-4
+      = f.input :phone_number
+
+  .row
+    .col-xs-12
+      h3 General information
+      hr
+    .col-md-4
+      = f.input :shipping_date
+    .col-xs-12
+    .col-md-12
+      = f.input :gift_message
+    .col-xs-12
+    .col-md-4
+      = f.input :order_type, collection: Order::ORDER_TYPE
+    .col-md-4
+      = f.input :company
+    .col-md-4
+      = f.input :industry
+    .col-xs-12
+    / .col-md-4
+      = f.input :shipping_method
+    .col-md-4
+      = f.input :address
+    .col-md-4
+      = f.input :apartment_number
+    .col-xs-12
+    .col-md-4
+      = f.input :recipient_name
+    .col-md-4
+      = f.input :recipient_phone_number
+    .col-xs-12
+    .col-md-4
+      = f.input :doorman, as: :boolean
+    .col-md-4
+      = f.input :building_type
+    .col-xs-12
+    .col-md-12
+      = f.input :deliver_comment
+    .col-md-6
+      = f.input :delivery_starting_at
+    .col-md-6
+      = f.input :delivery_ending_at
+
+  .row
+    .col-xs-12
+      h3 Personalization
+      hr
+    .col-md-6
+      = f.input :count_cupcakes_by, collection: Order::COUNT_CUPCAKES_BY
+    .col-xs-12
+
+  .row
+    .col-xs-12
+      hr
+
+      button.btn.btn-success.btn-lg
+        = fa_icon('check')
+        | Save
+
+      - redirect_location = [:admin, :cliparts]
+
+      = link_to redirect_location, class: 'btn btn-primary btn-lg'
+        = fa_icon('chevron-left')
+        | Back
+
+    .col-xs-12
+      - if f.object.created_at.present?
+        p.help-block Created at: #{f.object.created_at}
+
+      - if f.object.updated_at.present?
+        p.help-block Updated at: #{f.object.updated_at}

@@ -1,0 +1,26 @@
+= simple_form_for [:admin, record] do |f|
+  .row
+    .col-xs-12
+      = f.input :name
+      = f.input :ask_for_doorman
+
+  .row
+    .col-xs-12
+      hr
+
+      button.btn.btn-success.btn-lg
+        = fa_icon('check')
+        | Save
+
+      - redirect_location = [:admin, :building_types]
+
+      = link_to redirect_location, class: 'btn btn-primary btn-lg'
+        = fa_icon('chevron-left')
+        | Back
+
+    .col-xs-12
+      - if f.object.created_at.present?
+        p.help-block Created at: #{f.object.created_at}
+
+      - if f.object.updated_at.present?
+        p.help-block Updated at: #{f.object.updated_at}

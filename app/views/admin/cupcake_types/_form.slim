@@ -1,0 +1,33 @@
+= simple_form_for [:admin, record] do |f|
+  .row
+    .col-xs-12
+      = f.input :name
+
+    .col-xs-12
+      = f.input :image, as: :shrine_file
+
+    - if record.image.is_a?(Hash) && record.image[:medium]
+      .col-xs-12
+        center
+          = image_tag record.image[:medium].url, class: 'img-responsive'
+
+  .row
+    .col-xs-12
+      hr
+
+      button.btn.btn-success.btn-lg
+        = fa_icon('check')
+        | Save
+
+      - redirect_location = [:admin, :cliparts]
+
+      = link_to redirect_location, class: 'btn btn-primary btn-lg'
+        = fa_icon('chevron-left')
+        | Back
+
+    .col-xs-12
+      - if f.object.created_at.present?
+        p.help-block Created at: #{f.object.created_at}
+
+      - if f.object.updated_at.present?
+        p.help-block Updated at: #{f.object.updated_at}

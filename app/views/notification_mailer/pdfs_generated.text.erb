@@ -1,0 +1,7 @@
+PDF generation is done!
+
+<% if @printed_cupcake %>
+  You can find the generated PDF at the following link <%= admin_print_url(@printed_cupcake.id) %>
+<% else %>
+  No PDFs have been created. There weren't any orders to generate PDFs from
+<% end %>

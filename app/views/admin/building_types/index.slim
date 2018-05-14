@@ -1,0 +1,28 @@
+.col-xs-12
+  .row
+    = search_form_for @query, url: [:admin, :building_types] do |f|
+      .col-md-10
+        = f.input :name_cont, required: false, label: 'Name contains'
+      .col-md-2
+        button.btn.btn-success.btn-block style="margin-top: 25px"
+          = fa_icon('search')
+          | Search
+
+.col-xs-12
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th = sort_link(@query, :name)
+          th = sort_link(@query, :ask_for_doorman)
+          th
+            .pull-right
+              - if policy(Clipart).new?
+                = link_to [:new, :admin, :building_type], class: 'btn btn-xs btn-default'
+                  = fa_icon(:plus)
+                  | New
+      tbody
+        - @collection.each do |record|
+          = render 'row', record: record
+.col-xs-12
+  = paginate @collection

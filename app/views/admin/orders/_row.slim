@@ -1,0 +1,24 @@
+tr
+  td
+    span
+      - if record.paid?
+        | ✅
+      - else
+        | ❌
+  td = record.full_name
+  td = record.email
+  td = record.created_at
+  td
+    .pull-right
+      - if policy(record).show?
+        = link_to [:admin, record], class: 'btn btn-xs btn-primary'
+          = fa_icon(:eye)
+          | Show
+      / - if policy(record).edit?
+        = link_to [:edit, :admin, record], class: 'btn btn-xs btn-info'
+          = fa_icon(:edit)
+          | Edit
+      - if policy(record).destroy?
+        = link_to [:admin, record], class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: "Are you sure you you want to delete this record?" }
+          = fa_icon('trash-o')
+          | Delete

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spots NYC - print sheet</title>
+    <%= wicked_pdf_stylesheet_link_tag 'printed_cupcakes/style' %>
+    <style>
+      <% @fonts.each do |font| %>
+        @font-face {
+          font-family: "<%= font.name %>";
+          src: url("<%= base64_encoded_font(font)%>");
+        }
+      <% end %>
+    </style>
+</head>
+
+<body>
+  <% @cupcakes_partitioned_by_page.each do |cupcakes_partitioned_by_row| %>
+    <%= render 'printed_cupcakes/page', cupcakes_partitioned_by_row: cupcakes_partitioned_by_row %>
+  <% end %>
+</body>
+
+</html>

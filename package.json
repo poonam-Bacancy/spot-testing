@@ -1,0 +1,7 @@
+{
+  "name": "spots-ync",
+  "private": true,
+  "dependencies": {
+    "mjml": "^3.3.5"
+  }
+}

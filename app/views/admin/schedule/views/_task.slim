@@ -1,0 +1,9 @@
+- shipping = order.ship_at&.to_date == day
+.schedule__unit__days__day__tasks__task class="schedule__unit__days__day__tasks__task--#{shipping ? 'shipping' : 'baking'}"
+  = link_to [:admin, order]
+    - if shipping
+      div Ship
+      div ##{order.id}
+    - else
+      div Bake
+      div ##{order.id}

@@ -1,0 +1,253 @@
+.row
+  .col-xs-12
+    h1
+      span Order ##{@record.id}
+      span
+        '
+        |
+      span
+        - if @record.paid?
+          | ✅
+        - else
+          | ❌
+    hr
+
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Customer information
+      .panel-body
+        table.table
+          tbody
+            tr
+              td Name
+              td = @record.full_name
+            tr
+              td Email
+              td = link_to @record.email, "mailto:#{@record.email}"
+            tr
+              td Phone number
+              td = link_to @record.phone_number, "tel:#{@record.phone_number}"
+            tr
+              td Order type
+              td = @record.order_type
+            tr
+              td Additional notes
+              td = @record.additional_notes
+
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Packaging information
+      .panel-body
+        table.table
+          tbody
+            tr
+              td Gift message
+              td = @record.gift_message
+            tr
+              td Wrap around label message
+              td = @record.wrap_around_label_message
+
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Delivery information
+      .panel-body
+        table.table
+          tbody
+            tr
+              td Shipping method
+              td = @record.shipping_method
+            tr
+              td Address
+              td = @record.address
+            tr
+              td Apartment number
+              td = @record.apartment_number
+            tr
+              td Recipient name
+              td = @record.recipient_name
+            tr
+              td Recipient phone number
+              td = @record.recipient_phone_number
+            tr
+              td Doorman
+              td = @record.doorman
+            tr
+              td Building type
+              td = @record.building_type&.name
+            tr
+              td Pickup time
+              td = @record.pickup_time&.strftime('%m/%d/%Y %H:%M')
+            tr
+              td Starting at
+              td = @record.delivery_starting_at&.strftime('%m/%d/%Y %H:%M')
+            tr
+              td Ending at
+              td = @record.delivery_ending_at&.strftime('%m/%d/%Y %H:%M')
+            tr
+              td Comment
+              td = @record.delivery_comment
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Price
+      .panel-body
+        table.table
+          thead
+            tr
+              th Total
+              th = format_money(@record.total)
+          tbody
+            tr
+              td Units price
+              td = format_money(@record.units_price)
+            tr
+              td Cupcake designs price
+              td = format_money(@record.cupcake_designs_price)
+            tr
+              td Gift messsage price
+              td = format_money(@record.gift_message_price)
+            tr
+              td Rush order price
+              td = format_money(@record.rush_order_price)
+            tr
+              td Shipping price
+              td = format_money(@record.shipping_price)
+            tr
+              td Discount
+              td = format_money(@record.discount)
+            tr
+              td Promo code
+              td
+                - if @record.promotion_code
+                  = link_to @record.promotion_code.code, [:admin, @record.promotion_code]
+
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Corporate information
+      .panel-body
+        table.table
+          tbody
+            tr
+              td Company
+              td = @record.company
+            tr
+              td Industry
+              td = @record.industry&.name
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Social
+      .panel-body
+        table.table
+          tbody
+            tr
+              td Shareable images
+              td = @record.shareable_images
+
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Payments
+      .panel-body
+        table.table
+          thead
+            tr
+              th Paid
+              th Stripe ID
+              th Object
+          tbody
+            - @record.payment_data&.each do |payment|
+              tr
+                td
+                  - if payment['paid']
+                    span ✅
+                  - else
+                    span ❌
+                td
+                  - if payment['object'] == 'charge'
+                    = link_to payment['id'], "https://dashboard.stripe.com/payments/#{payment['id']}"
+                  - else
+                    = payment['id']
+                td = payment['object']
+
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Cupcakes
+      .panel-body
+        .row
+          .col-xs-12
+            h3 General information
+            hr
+          .col-xs-12
+            table.table
+              tbody
+                tr
+                  td Count cupcakes by
+                  td = @record.count_cupcakes_by
+
+          .col-xs-12
+            h3 Flavors
+            hr
+          .col-xs-12
+            table.table
+              thead
+                tr
+                  th Image
+                  th Cupcake type
+              tbody
+                - @record.cupcake_types.each do |type|
+                  tr
+                    td = image_tag type.image[:preloader]&.url, class: 'img-responsive'
+                    td = type.name
+
+          .col-xs-12
+            h3 Designs
+            hr
+          .col-xs-12
+            table.table
+              thead
+                tr
+                  th Type
+                  th
+                  th Quantity
+              tbody
+                - @record.cupcakes.each do |cupcake|
+                  tr
+                    td = cupcake.type
+                    td
+                      - if cupcake.type == :clipart
+                        span = image_tag cupcake.clipart.image[:preloader]&.url
+                        - if cupcake.clipart.deleted_at
+                          span = cupcake.clipart.name
+                        - else
+                          span = link_to cupcake.clipart.name, [:edit, :admin, cupcake.clipart]
+                      - elsif cupcake.type == :image
+                        span = image_tag cupcake.image[:preloader]&.url
+                      - else
+                        span = "Text: #{[cupcake.font_options['first_line'], cupcake.font_options['second_line'], cupcake.font_options['third_line']].join(' | ')}"
+                        span = ["Text size: #{cupcake.font_options['size']}", "Curved: #{cupcake.font_options['curved']}", "Color: #{cupcake.font_options['color']}"].join(' | ')
+                    td = cupcake.quantity
+
+.row
+  .col-xs-12
+      hr
+      - redirect_location = [:admin, :orders]
+      = link_to redirect_location, class: 'btn btn-primary btn-lg'
+        = fa_icon('chevron-left')
+        | Back
+
+  .col-xs-12
+    p.help-block Created at: #{@record.created_at}
+    p.help-block Updated at: #{@record.updated_at}
